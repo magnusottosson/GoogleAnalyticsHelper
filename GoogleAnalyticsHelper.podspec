@@ -18,4 +18,5 @@ Pod::Spec.new do |s|
   s.source_files = 'GAH/**/*'
   s.public_header_files = 'GAH/**/*.h'
   s.dependency 'Google/Analytics', '~> 1.0.0'
+  s.dependency 'GBDeviceInfo', '~> 3.2.0'
 end

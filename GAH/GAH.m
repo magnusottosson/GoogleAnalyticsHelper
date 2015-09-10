@@ -4,6 +4,7 @@
 
 #import "GAH.h"
 #import <Google/Analytics.h>
+#import <GBDeviceInfo/GBDeviceInfo.h>
 
 NSString *const kTwitterSocialNetwork = @"Twitter";
 NSString *const kFacebookSocialNetwork = @"Facebook";
