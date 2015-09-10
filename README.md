@@ -46,7 +46,7 @@ Development and issues are tracked here on Github. Pull requests are welcomed.
 * [Magnus Ottosson](https://github.com/permagnus)
 
 ## Credits
-Inspired and based on [**BNEasyGoogleAnalyticsr**](https://github.com/brandnetworks/BNEasyGoogleAnalytics)
+Inspired and based on [**BNEasyGoogleAnalytics**](https://github.com/brandnetworks/BNEasyGoogleAnalytics)
 
 
 ## License
