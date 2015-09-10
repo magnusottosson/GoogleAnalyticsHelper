@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "GoogleAnalyticsHelper"
-  s.version          = "0.1.0"
+  s.version          = "0.2.0"
   s.summary          = "A simple wrapper for the official Google Analytics lib."
   s.description      = <<-DESC
   A simple wrapper for the official Google Analytics lib. Write less code.
