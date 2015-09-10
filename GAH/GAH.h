@@ -13,26 +13,42 @@ typedef NS_ENUM(NSUInteger, GAHLogLevel) {
     kGAHLogLevelVerbose = 4
 };
 
+/**
+ *  This is the standard string to describe Twitter as the network when tracking social activity
+ */
+extern NSString *const kTwitterSocialNetwork;
+/**
+ *  This is the standard string to describe Facebook as the network when tracking social activity
+ */
+extern NSString *const kFacebookSocialNetwork;
+/**
+ *  This is the standard string to describe Tweeting as the action when tracking social activity
+ */
+extern NSString *const kTweetSocialAction;
+/**
+ *  This is the standard string to describe liking as the action when tracking social activity
+ */
+extern NSString *const kLikeSocialAction;
+
 @interface GAH : NSObject
 
-
-+ (void)setupWithTrackedId:(NSString *)trackerId;
++ (void)setupWithTrackerId:(NSString *)trackerId;
 
 + (void)setupTracker;
 
-+ (void)trackEventWithCategory:(NSString *)category andAction:(NSString *)action andLabel:(NSString *)label andValue:(NSNumber *)value;
++ (void)trackEventWithCategory:(NSString *)category action:(NSString *)action label:(NSString *)label value:(NSNumber *)value;
 
 + (void)trackScreenNamed:(NSString *)screenName;
 
-+ (void)trackExceptionWithMessage:(NSString *)message andFatal:(BOOL)fatal;
++ (void)trackExceptionWithMessage:(NSString *)message fatal:(BOOL)fatal;
 
-+ (void)trackSocialActivityWithNetwork:(NSString *)network andAction:(NSString *)action toTarget:(NSString *)target;
++ (void)trackSocialActivityWithNetwork:(NSString *)network action:(NSString *)action target:(NSString *)target;
 
-+ (void)trackTimePeriod:(NSNumber *)timing withCategory:(NSString *)category forName:(NSString *)name andLabel:(NSString *)label;
++ (void)trackTimePeriod:(NSNumber *)timing category:(NSString *)category name:(NSString *)name label:(NSString *)label;
 
-+ (void)trackTimeSpentInBlock:(void (^)())block withCategory:(NSString *)category forName:(NSString *)name andLabel:(NSString *)label;
++ (void)trackTimeSpentInBlock:(void (^)())block category:(NSString *)category name:(NSString *)name label:(NSString *)label;
 
-+ (void)trackAsyncTimeSpentInBlock:(void (^)(void (^)(void)))block withCategory:(NSString *)category forName:(NSString *)name andLabel:(NSString *)label;
++ (void)trackAsyncTimeSpentInBlock:(void (^)(void (^)(void)))block category:(NSString *)category name:(NSString *)name label:(NSString *)label;
 
 + (void)trackTweetToTarget:(NSString *)target;
 
@@ -61,4 +77,5 @@ typedef NS_ENUM(NSUInteger, GAHLogLevel) {
 + (BOOL)trackBuildInfo;
 
 + (void)setTrackBuildInfo:(BOOL)trackBuildInfo;
+
 @end

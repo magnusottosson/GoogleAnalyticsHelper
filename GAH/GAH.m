@@ -34,7 +34,7 @@ NSString *const kLikeSocialAction = @"Like";
 	return [[GAI sharedInstance] defaultTracker];
 }
 
-+ (void)setupWithTrackedId:(NSString *)trackerId
++ (void)setupWithTrackerId:(NSString *)trackerId
 {
 	[[GAI sharedInstance] trackerWithTrackingId:trackerId];
 }
@@ -46,7 +46,7 @@ NSString *const kLikeSocialAction = @"Like";
 	NSAssert(!configureError, @"Error configuring Google services: %@", configureError);
 }
 
-+ (void)trackEventWithCategory:(NSString *)category andAction:(NSString *)action andLabel:(NSString *)label andValue:(NSNumber *)value
++ (void)trackEventWithCategory:(NSString *)category action:(NSString *)action label:(NSString *)label value:(NSNumber *)value
 {
 	[self send:[[GAIDictionaryBuilder createEventWithCategory:category action:action label:label value:value] build]];
 }
@@ -57,22 +57,22 @@ NSString *const kLikeSocialAction = @"Like";
 	[self send:[[GAIDictionaryBuilder createScreenView] build]];
 }
 
-+ (void)trackExceptionWithMessage:(NSString *)message andFatal:(BOOL)fatal
++ (void)trackExceptionWithMessage:(NSString *)message fatal:(BOOL)fatal
 {
 	[self send:[[GAIDictionaryBuilder createExceptionWithDescription:message withFatal:@(fatal)] build]];
 }
 
-+ (void)trackSocialActivityWithNetwork:(NSString *)network andAction:(NSString *)action toTarget:(NSString *)target
++ (void)trackSocialActivityWithNetwork:(NSString *)network action:(NSString *)action target:(NSString *)target
 {
 	[self send:[[GAIDictionaryBuilder createSocialWithNetwork:network action:action target:target] build]];
 }
 
-+ (void)trackTimePeriod:(NSNumber *)timing withCategory:(NSString *)category forName:(NSString *)name andLabel:(NSString *)label
++ (void)trackTimePeriod:(NSNumber *)timing category:(NSString *)category name:(NSString *)name label:(NSString *)label
 {
 	[self send:[[GAIDictionaryBuilder createTimingWithCategory:category interval:timing name:name label:label] build]];
 }
 
-+ (void)trackTimeSpentInBlock:(void (^)())block withCategory:(NSString *)category forName:(NSString *)name andLabel:(NSString *)label
++ (void)trackTimeSpentInBlock:(void (^)())block category:(NSString *)category name:(NSString *)name label:(NSString *)label
 {
 	NSDate *date = [NSDate date];
 	block();
@@ -81,7 +81,7 @@ NSString *const kLikeSocialAction = @"Like";
 	[self send:[[GAIDictionaryBuilder createTimingWithCategory:category interval:@(timeSpentInMilliSeconds) name:name label:label] build]];
 }
 
-+ (void)trackAsyncTimeSpentInBlock:(void (^)(void (^)(void)))block withCategory:(NSString *)category forName:(NSString *)name andLabel:(NSString *)label
++ (void)trackAsyncTimeSpentInBlock:(void (^)(void (^)(void)))block category:(NSString *)category name:(NSString *)name label:(NSString *)label
 {
 	NSDate *date = [NSDate date];
 	block(^void(void)
@@ -94,12 +94,12 @@ NSString *const kLikeSocialAction = @"Like";
 
 + (void)trackTweetToTarget:(NSString *)target
 {
-	[self trackSocialActivityWithNetwork:kTwitterSocialNetwork andAction:kTweetSocialAction toTarget:target];
+	[self trackSocialActivityWithNetwork:kTwitterSocialNetwork action:kTweetSocialAction target:target];
 }
 
 + (void)trackLikeToTarget:(NSString *)target
 {
-	[self trackSocialActivityWithNetwork:kFacebookSocialNetwork andAction:kLikeSocialAction toTarget:target];
+	[self trackSocialActivityWithNetwork:kFacebookSocialNetwork action:kLikeSocialAction target:target];
 }
 
 + (void)setTracksUncaughtExceptions:(BOOL)tracksUncaughtExceptions

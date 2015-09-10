@@ -19,7 +19,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-	[GAH setupWithTrackedId:@"<#Tracking ID#>"];
+	[GAH setupWithTrackerId:@"<#Tracking ID#>"];
 
 	/*
 	[GAH setTrackBuildInfo:YES];

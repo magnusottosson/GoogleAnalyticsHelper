@@ -14,7 +14,7 @@ After the pod is installed setup the tracker the first thing when the app starts
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Initialize with Google Analytics tracking id.
-    [GAH setupWithTrackedId:@"<#Tracking ID#>"];
+    [GAH setupWithTrackerId:@"<#Tracking ID#>"];
 
     //Or, you can set it up by dragging your GoogleService-Info.plist to your Xcode project and add it to all targets.
     [GAH setupTracker];
