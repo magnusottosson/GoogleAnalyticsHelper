@@ -5,6 +5,7 @@
 #import "GAH.h"
 #import <Google/Analytics.h>
 #import <GBDeviceInfo/GBDeviceInfo.h>
+#import <GoogleAnalytics/GAITracker.h>
 
 NSString *const kTwitterSocialNetwork = @"Twitter";
 NSString *const kFacebookSocialNetwork = @"Facebook";
@@ -14,6 +15,7 @@ NSString *const kLikeSocialAction = @"Like";
 @interface GAH ()
 @property(nonatomic) BOOL trackDeviceInfo;
 @property(nonatomic) BOOL trackBuildInfo;
+@property(nonatomic, strong) NSMutableArray *trackers;
 @end
 
 @implementation GAH
@@ -24,19 +26,33 @@ NSString *const kLikeSocialAction = @"Like";
 	static id sharedInstance;
 	dispatch_once(&once, ^
 	{
-	    sharedInstance = [[self alloc] init];
+		sharedInstance = [[self alloc] init];
 	});
 	return sharedInstance;
 }
 
-+ (id<GAITracker>)tracker
+- (instancetype)init
 {
-	return [[GAI sharedInstance] defaultTracker];
+	self = [super init];
+	if (self)
+	{
+		self.trackers = [NSMutableArray array];
+	}
+
+	return self;
 }
 
 + (void)setupWithTrackerId:(NSString *)trackerId
 {
-	[[GAI sharedInstance] trackerWithTrackingId:trackerId];
+	[self trackerWithId:trackerId];
+}
+
++ (id<GAITracker>)trackerWithId:(NSString *)trackerId
+{
+	id<GAITracker> tracker = [[GAI sharedInstance] trackerWithTrackingId:trackerId];
+	[[self sharedInstance].trackers addObject:tracker];
+
+	return tracker;
 }
 
 + (void)setupTracker
@@ -53,7 +69,11 @@ NSString *const kLikeSocialAction = @"Like";
 
 + (void)trackScreenNamed:(NSString *)screenName;
 {
-	[self.tracker set:kGAIScreenName value:screenName];
+	for(id<GAITracker> tracker in [self sharedInstance].trackers)
+	{
+		[tracker set:kGAIScreenName value:screenName];
+	}
+
 	[self send:[[GAIDictionaryBuilder createScreenView] build]];
 }
 
@@ -86,9 +106,9 @@ NSString *const kLikeSocialAction = @"Like";
 	NSDate *date = [NSDate date];
 	block(^void(void)
 	{
-	    double timeSpentInMilliSeconds = [date timeIntervalSinceNow] * -1000.0;
+		double timeSpentInMilliSeconds = [date timeIntervalSinceNow] * -1000.0;
 
-	    [self send:[[GAIDictionaryBuilder createTimingWithCategory:category interval:@(timeSpentInMilliSeconds) name:name label:label] build]];
+		[self send:[[GAIDictionaryBuilder createTimingWithCategory:category interval:@(timeSpentInMilliSeconds) name:name label:label] build]];
 	});
 }
 
@@ -134,7 +154,10 @@ NSString *const kLikeSocialAction = @"Like";
 
 + (void)setAnonymizeIp:(BOOL)anonymizeIp
 {
-	[[self tracker] set:kGAIAnonymizeIp value:anonymizeIp ? @"1" : @"0"];
+	for(id<GAITracker> tracker in [self sharedInstance].trackers)
+	{
+		[tracker set:kGAIAnonymizeIp value:anonymizeIp ? @"1" : @"0"];
+	}
 }
 
 + (void)setLogLevel:(GAHLogLevel)logLevel
@@ -164,23 +187,26 @@ NSString *const kLikeSocialAction = @"Like";
 
 + (void)send:(NSDictionary *)parameters
 {
-	if([self sharedInstance].trackBuildInfo)
+	if ([self sharedInstance].trackBuildInfo)
 	{
 		[self sendDeviceInfo];
 	}
 
-	if([self sharedInstance].trackDeviceInfo)
+	if ([self sharedInstance].trackDeviceInfo)
 	{
 		[self sendBuildInfo];
 	}
 
-	[self.tracker send:parameters];
+	for(id<GAITracker> tracker in [self sharedInstance].trackers)
+	{
+		[tracker send:parameters];
+	}
 }
 
 + (void)sendDeviceInfo
 {
 	[self setCustomDimensionAtIndex:2 name:@"device" value:[GBDeviceInfo deviceInfo].modelString];
-	[self setCustomDimensionAtIndex:3 name:@"jailbroken" value:[GBDeviceInfo deviceInfo].isJailbroken ? @"YES": @"NO"];
+	[self setCustomDimensionAtIndex:3 name:@"jailbroken" value:[GBDeviceInfo deviceInfo].isJailbroken ? @"YES" : @"NO"];
 }
 
 + (void)sendBuildInfo

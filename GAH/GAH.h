@@ -5,6 +5,9 @@
 #import <Foundation/Foundation.h>
 #import "GAILogger.h"
 
+@protocol GAITracker;
+@protocol GAITracker;
+
 typedef NS_ENUM(NSUInteger, GAHLogLevel) {
     kGAHLogLevelNone = 0,
     kGAHLogLevelError = 1,
@@ -32,7 +35,9 @@ extern NSString *const kLikeSocialAction;
 
 @interface GAH : NSObject
 
-+ (void)setupWithTrackerId:(NSString *)trackerId;
++ (void)setupWithTrackerId:(NSString *)trackerId __deprecated;
+
++ (id <GAITracker>)trackerWithId:(NSString *)trackerId;
 
 + (void)setupTracker;
 
