@@ -59,9 +59,9 @@ extern NSString *const kLikeSocialAction;
 
 + (void)trackLikeToTarget:(NSString *)target;
 
-+ (void)trackErrorWithDescription:(NSString *)description error:(NSError *)error;
++ (void)trackErrorWithDescription:(NSString *)description;
 
-+ (void)trackErrorWithDescription:(NSString *)description error:(NSError *)error fatal:(BOOL)fatal;
++ (void)trackErrorWithDescription:(NSString *)description fatal:(BOOL)fatal;
 
 + (void)setTracksUncaughtExceptions:(BOOL)tracksUncaughtExceptions;
 
