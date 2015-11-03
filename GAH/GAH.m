@@ -122,14 +122,14 @@ NSString *const kLikeSocialAction = @"Like";
 	[self trackSocialActivityWithNetwork:kFacebookSocialNetwork action:kLikeSocialAction target:target];
 }
 
-+ (void)trackErrorWithDescription:(NSString *)description error:(NSError *)error
++ (void)trackErrorWithDescription:(NSString *)description
 {
-	[self send:[[GAIDictionaryBuilder createExceptionWithDescription:error.localizedDescription withFatal:@NO] build]];
+	[self trackErrorWithDescription:description fatal:NO];
 }
 
-+ (void)trackErrorWithDescription:(NSString *)description error:(NSError *)error fatal:(BOOL)fatal
++ (void)trackErrorWithDescription:(NSString *)description fatal:(BOOL)fatal
 {
-	[self send:[[GAIDictionaryBuilder createExceptionWithDescription:error.localizedDescription withFatal:@(fatal)] build]];
+	[self send:[[GAIDictionaryBuilder createExceptionWithDescription:description withFatal:@(fatal)] build]];
 }
 
 + (void)setTracksUncaughtExceptions:(BOOL)tracksUncaughtExceptions
