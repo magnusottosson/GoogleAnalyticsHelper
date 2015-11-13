@@ -232,7 +232,10 @@ NSString *const kLikeSocialAction = @"Like";
 
 + (void)setCustomDimensionAtIndex:(NSUInteger)index name:(NSString *)name value:(NSString *)value
 {
-	[[GAI sharedInstance].defaultTracker set:[GAIFields customDimensionForIndex:index] value:[NSString stringWithFormat:@"%@ - %@", name, value]];
+	for(id<GAITracker> tracker in [self sharedInstance].trackers)
+	{
+		[tracker set:[GAIFields customDimensionForIndex:index] value:[NSString stringWithFormat:@"%@ - %@", name, value]];
+	}
 }
 
 + (NSString *)urlEncodeString:(NSString *)string

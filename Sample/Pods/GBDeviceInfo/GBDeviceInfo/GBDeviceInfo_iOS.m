@@ -37,10 +37,14 @@
 
 @implementation GBDeviceInfo
 
-@dynamic isJailbroken;
+#pragma mark - Custom Accessors
+
+- (BOOL)isJailbroken {
+    @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:@"You have to include the Jailbreak subspec in order to access this property. Add `pod 'GBDeviceInfo/Jailbreak'` to your Podfile." userInfo:nil];
+}
 
 - (NSString *)description {
-    return [NSString stringWithFormat:@"%@\nrawSystemInfoString: %@\nmodel: %ld\nfamily: %ld\ndisplay: %ld\nppi: %ld\ndeviceVersion.major: %ld\ndeviceVersion.minor: %ld\nosVersion.major: %ld\nosVersion.minor: %ld\nosVersion.patch: %ld\ncpuInfo.frequency: %.3f\ncpuInfo.numberOfCores: %ld\ncpuInfo.l2CacheSize: %.3f\npysicalMemory: %.3f\nisJailbroken: %@",
+    return [NSString stringWithFormat:@"%@\nrawSystemInfoString: %@\nmodel: %ld\nfamily: %ld\ndisplay: %ld\nppi: %ld\ndeviceVersion.major: %ld\ndeviceVersion.minor: %ld\nosVersion.major: %ld\nosVersion.minor: %ld\nosVersion.patch: %ld\ncpuInfo.frequency: %.3f\ncpuInfo.numberOfCores: %ld\ncpuInfo.l2CacheSize: %.3f\npysicalMemory: %.3f",
             [super description],
             self.rawSystemInfoString,
             (long)self.model,
@@ -55,8 +59,7 @@
             self.cpuInfo.frequency,
             (unsigned long)self.cpuInfo.numberOfCores,
             self.cpuInfo.l2CacheSize,
-            self.physicalMemory,
-            self.isJailbroken ? @"YES" : @"NO"
+            self.physicalMemory
         ];
 }
 
@@ -185,6 +188,12 @@
 
                 // 6
                 @[@(7), @(2)]: @[@(GBDeviceModeliPhone6), @"iPhone 6", @(326)],
+                
+                // 6S
+                @[@(8), @(1)]: @[@(GBDeviceModeliPhone6S), @"iPhone 6S", @(326)],
+                
+                // 6S Plus
+                @[@(8), @(2)]: @[@(GBDeviceModeliPhone6SPlus), @"iPhone 6S Plus", @(401)],
             },
             @"iPad": @{
                 // 1
@@ -229,6 +238,9 @@
                 // Air 2
                 @[@(5), @(3)]: @[@(GBDeviceModeliPadAir2), @"iPad Air 2", @(264)],
                 @[@(5), @(4)]: @[@(GBDeviceModeliPadAir2), @"iPad Air 2", @(264)],
+
+                // Pro
+                @[@(6), @(8)]: @[@(GBDeviceModeliPadPro), @"iPad Pro", @(264)],
             },
             @"iPod": @{
                 // 1st Gen
@@ -278,6 +290,11 @@
         ((screenWidth == 1024) && (screenHeight == 768))) {
         return GBDeviceDisplayiPad;
     }
+    // iPad Pro
+    else if (((screenWidth == 1024) && (screenHeight == 1366)) ||
+             ((screenWidth == 1366) && (screenHeight == 1024))) {
+            return GBDeviceDisplayiPadPro;
+        }
     // iPhone 3.5 inch
     else if (((screenWidth == 320) && (screenHeight == 480)) ||
              ((screenWidth == 480) && (screenHeight == 320))) {
@@ -316,25 +333,5 @@
     
     return GBOSVersionMake(majorVersion, minorVersion, patchVersion);
 }
-
-#pragma mark - Integrity protection
-
-#if !DEBUG
-typedef int (*ptrace_ptr_t)(int _request, pid_t _pid, caddr_t _addr, int _data);
-#ifndef PT_DENY_ATTACH
-#define PT_DENY_ATTACH 31
-#endif
-
-static void DisableGDB() {
-    void *handle = dlopen(0, RTLD_GLOBAL | RTLD_NOW);
-    ptrace_ptr_t ptrace_ptr = dlsym(handle, "ptrace");
-    ptrace_ptr(PT_DENY_ATTACH, 0, 0, 0);
-    dlclose(handle);
-}
-
-+ (void)load {
-    DisableGDB();
-}
-#endif
 
 @end
