@@ -47,6 +47,8 @@ extern NSString *const kLikeSocialAction;
 
 + (void)trackExceptionWithMessage:(NSString *)message fatal:(BOOL)fatal;
 
++ (void)trackApiErrorWithUrl:(NSString *)url params:(NSDictionary *)params method:(NSString *)method responseCode:(NSUInteger)responseCode response:(NSString *)response;
+
 + (void)trackSocialActivityWithNetwork:(NSString *)network action:(NSString *)action target:(NSString *)target;
 
 + (void)trackTimePeriod:(NSNumber *)timing category:(NSString *)category name:(NSString *)name label:(NSString *)label;
