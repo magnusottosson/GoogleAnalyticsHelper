@@ -82,6 +82,20 @@ NSString *const kLikeSocialAction = @"Like";
 	[self send:[[GAIDictionaryBuilder createExceptionWithDescription:message withFatal:@(fatal)] build]];
 }
 
++ (void)trackApiErrorWithUrl:(NSString *)url params:(NSDictionary *)params method:(NSString *)method responseCode:(NSUInteger)responseCode response:(NSString *)response
+{
+	NSMutableDictionary *errorMessage = [NSMutableDictionary dictionary];
+	errorMessage[@"responseCode"] = @(responseCode);
+	errorMessage[@"response"] = response;
+	errorMessage[@"method"] = method;
+	errorMessage[@"url"] = url;
+	errorMessage[@"params"] = params;
+
+	NSString *errorJson = [self jsonFromDictionary:errorMessage prettyPrint:NO];
+
+	[self trackEventWithCategory:@"API ERROR" action:url label:errorJson value:nil];
+}
+
 + (void)trackSocialActivityWithNetwork:(NSString *)network action:(NSString *)action target:(NSString *)target
 {
 	[self send:[[GAIDictionaryBuilder createSocialWithNetwork:network action:action target:target] build]];
@@ -242,6 +256,21 @@ NSString *const kLikeSocialAction = @"Like";
 {
 	NSString *s = [[string stringByReplacingOccurrencesOfString:@" " withString:@"-"] lowercaseString];
 	return [s stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+}
+
++ (NSString*)jsonFromDictionary:(NSDictionary *)dictionary prettyPrint:(BOOL) prettyPrint
+{
+	NSError *error;
+	NSData *jsonData = [NSJSONSerialization dataWithJSONObject:self options:(NSJSONWritingOptions)(prettyPrint ? NSJSONWritingPrettyPrinted : 0) error:&error];
+
+	if (!jsonData)
+	{
+		return @"{}";
+	}
+	else
+	{
+		return [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+	}
 }
 
 @end
