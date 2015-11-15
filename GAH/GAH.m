@@ -260,17 +260,26 @@ NSString *const kLikeSocialAction = @"Like";
 
 + (NSString*)jsonFromDictionary:(NSDictionary *)dictionary prettyPrint:(BOOL) prettyPrint
 {
-	NSError *error;
-	NSData *jsonData = [NSJSONSerialization dataWithJSONObject:self options:(NSJSONWritingOptions)(prettyPrint ? NSJSONWritingPrettyPrinted : 0) error:&error];
+	NSString *result;
+	@try {
+		NSError *error;
+		NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dictionary options:(NSJSONWritingOptions)(prettyPrint ? NSJSONWritingPrettyPrinted : 0) error:&error];
 
-	if (!jsonData)
-	{
-		return @"{}";
+		if (!jsonData)
+		{
+			result = @"{}";
+		}
+		else
+		{
+			result = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+		}
+
 	}
-	else
-	{
-		return [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+	@catch (NSException * e) {
+		result = @"{}";
 	}
+
+	return result;
 }
 
 @end
