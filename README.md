@@ -2,7 +2,7 @@
 A simple wrapper for the official Google Analytics lib. Write less code.
 
 ### Setup
-The supported installation method is Cocoapods.
+The supported installation method is CocoaPods.
 
 ```ruby
 pod 'GoogleAnalyticsHelper'
