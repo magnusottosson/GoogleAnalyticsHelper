@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "GoogleAnalyticsHelper"
-  s.version          = "0.3.0"
+  s.version          = "0.4.0"
   s.summary          = "A simple wrapper for the official Google Analytics lib."
   s.description      = <<-DESC
   A simple wrapper for the official Google Analytics lib. Write less code.
@@ -17,6 +17,6 @@ Pod::Spec.new do |s|
 
   s.source_files = 'GAH/**/*'
   s.public_header_files = 'GAH/**/*.h'
-  s.dependency 'Google/Analytics', '~> 1.0.0'
-  s.dependency 'GBDeviceInfo', '~> 3.2.0'
+  s.dependency 'Google/Analytics', '~> 3.0.3'
+  s.dependency 'GBDeviceInfo', '~> 4.1.0'
 end

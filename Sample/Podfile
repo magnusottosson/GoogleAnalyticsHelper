@@ -1,5 +1,13 @@
 platform :ios, '8.0'
+use_frameworks!
 inhibit_all_warnings!
 
-pod 'GBDeviceInfo'
-pod 'Google/Analytics'
+def used_pods
+	pod 'GBDeviceInfo'
+	pod 'Google/Analytics'
+end
+
+target 'GAHSampleProject' do
+    project 'GAHSampleProject'
+    used_pods
+end

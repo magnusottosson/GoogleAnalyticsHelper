@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		22A2C57A75D1F1DEF7B67EA9 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B1797E44B26160583BF034C1 /* libPods.a */; };
+		984728C2FCD09CF4E11D15A5 /* Pods_GAHSampleProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1E9DDB1239EDE24606DB9B0 /* Pods_GAHSampleProject.framework */; };
 		BF87AC7D3ECC98456CAD9895 /* GAH.m in Sources */ = {isa = PBXBuildFile; fileRef = BF87AF303A99C8EFA63A293D /* GAH.m */; };
 		F7A37D551BA1793100EA7165 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A37D541BA1793100EA7165 /* main.m */; };
 		F7A37D581BA1793100EA7165 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A37D571BA1793100EA7165 /* AppDelegate.m */; };
@@ -17,11 +17,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		070BE8E1032E2CEADEA031D2 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-		B1797E44B26160583BF034C1 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		131735A0A38A14749DCC8675 /* Pods-GAHSampleProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GAHSampleProject.release.xcconfig"; path = "Pods/Target Support Files/Pods-GAHSampleProject/Pods-GAHSampleProject.release.xcconfig"; sourceTree = "<group>"; };
+		5E9FA5CE22191250D8F8CEF0 /* Pods-GAHSampleProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GAHSampleProject.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GAHSampleProject/Pods-GAHSampleProject.debug.xcconfig"; sourceTree = "<group>"; };
+		B1E9DDB1239EDE24606DB9B0 /* Pods_GAHSampleProject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GAHSampleProject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF87ABEBF4171473BFA7F94E /* GAH.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GAH.h; path = ../../../GAH/GAH.h; sourceTree = "<group>"; };
 		BF87AF303A99C8EFA63A293D /* GAH.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GAH.m; path = ../../../GAH/GAH.m; sourceTree = "<group>"; };
-		E32A05314E6ACF46430CE113 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		F7A37D4F1BA1793100EA7165 /* GAHSampleProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GAHSampleProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7A37D531BA1793100EA7165 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F7A37D541BA1793100EA7165 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -38,26 +38,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				22A2C57A75D1F1DEF7B67EA9 /* libPods.a in Frameworks */,
+				984728C2FCD09CF4E11D15A5 /* Pods_GAHSampleProject.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0917610D771B48BEEBE64D39 /* Pods */ = {
+		1D4BADD62BAC60E8F22B9A64 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				070BE8E1032E2CEADEA031D2 /* Pods.debug.xcconfig */,
-				E32A05314E6ACF46430CE113 /* Pods.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
-		ABBF3B401E43C8153F2ED25A /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				B1797E44B26160583BF034C1 /* libPods.a */,
+				B1E9DDB1239EDE24606DB9B0 /* Pods_GAHSampleProject.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -71,13 +62,22 @@
 			path = GAH;
 			sourceTree = "<group>";
 		};
+		D7A36649AAC4BB5890BCA601 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				5E9FA5CE22191250D8F8CEF0 /* Pods-GAHSampleProject.debug.xcconfig */,
+				131735A0A38A14749DCC8675 /* Pods-GAHSampleProject.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		F7A37D461BA1793100EA7165 = {
 			isa = PBXGroup;
 			children = (
 				F7A37D511BA1793100EA7165 /* GAHSampleProject */,
 				F7A37D501BA1793100EA7165 /* Products */,
-				0917610D771B48BEEBE64D39 /* Pods */,
-				ABBF3B401E43C8153F2ED25A /* Frameworks */,
+				D7A36649AAC4BB5890BCA601 /* Pods */,
+				1D4BADD62BAC60E8F22B9A64 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -120,12 +120,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F7A37D721BA1793100EA7165 /* Build configuration list for PBXNativeTarget "GAHSampleProject" */;
 			buildPhases = (
-				6556813FDFA725354C9A009F /* Check Pods Manifest.lock */,
+				D8787C158CCCD9C145E54430 /* [CP] Check Pods Manifest.lock */,
 				F7A37D4B1BA1793100EA7165 /* Sources */,
 				F7A37D4C1BA1793100EA7165 /* Frameworks */,
 				F7A37D4D1BA1793100EA7165 /* Resources */,
-				EB6074D3145C880EE05A7D4B /* Copy Pods Resources */,
-				610AE66CAE9090BEBAC8A302 /* Embed Pods Frameworks */,
+				0459F41BFA609E0E82D2796D /* [CP] Embed Pods Frameworks */,
+				8778FE3FAB253B8FB02A97E0 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -181,49 +181,49 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		610AE66CAE9090BEBAC8A302 /* Embed Pods Frameworks */ = {
+		0459F41BFA609E0E82D2796D /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GAHSampleProject/Pods-GAHSampleProject-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		6556813FDFA725354C9A009F /* Check Pods Manifest.lock */ = {
+		8778FE3FAB253B8FB02A97E0 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GAHSampleProject/Pods-GAHSampleProject-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D8787C158CCCD9C145E54430 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		EB6074D3145C880EE05A7D4B /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -338,7 +338,7 @@
 		};
 		F7A37D731BA1793100EA7165 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 070BE8E1032E2CEADEA031D2 /* Pods.debug.xcconfig */;
+			baseConfigurationReference = 5E9FA5CE22191250D8F8CEF0 /* Pods-GAHSampleProject.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ENABLE_BITCODE = NO;
@@ -350,7 +350,7 @@
 		};
 		F7A37D741BA1793100EA7165 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E32A05314E6ACF46430CE113 /* Pods.release.xcconfig */;
+			baseConfigurationReference = 131735A0A38A14749DCC8675 /* Pods-GAHSampleProject.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ENABLE_BITCODE = NO;
